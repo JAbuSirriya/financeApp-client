@@ -6,11 +6,11 @@ export default class EarningsAndExpenses extends Component {
             <div>
                 <div>
                     <h5> Expenses </h5>
-                    <p id="expenses"> $0.00</p>
+                    <p className="expenses"> $0.00</p>
                 </div>
                 <div>
                     <h5>Income </h5>
-                    <p id="income"> $0.00</p>
+                    <p className="income"> $0.00</p>
                 </div>
             </div>
         )

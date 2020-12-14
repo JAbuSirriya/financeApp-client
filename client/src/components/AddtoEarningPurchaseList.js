@@ -13,13 +13,9 @@ export default class AddtoEarningPurchaseList extends Component {
     }
 
     onSubmit(e){
-        e.preventDefault()
-        console.log(this.state.formData)
+        e.preventDefault();
         const data = {description: this.state.description, amount: this.state.amount}
-        axios.post('http://localhost:3000/purchases/', data)
-        .then(res => {
-            console.log(res)
-        })
+        this.props.handleSubmitClick(data);
     }
 
 

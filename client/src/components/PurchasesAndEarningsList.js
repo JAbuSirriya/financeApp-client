@@ -1,14 +1,30 @@
 import React, { Component } from 'react'
 
-export default class PurchasesAndEarningsList extends Component {
 
+
+export default class PurchasesAndEarningsList extends Component {
 
 
     render() {
         return (
-            <div>
-               <h4>Recent Purchases and Earnings</h4> 
-            </div>
+            <table>
+                <thead>
+                    <th>Description</th>
+                    <th>Amount</th>
+                </thead>
+                <tbody>
+                    {this.props.purchases.map(v => (
+                        <tr>
+                            <th>
+                                    {v.description}
+                            </th>
+                            <th>
+                                        {v.amount}
+                            </th>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         )
     }
 }

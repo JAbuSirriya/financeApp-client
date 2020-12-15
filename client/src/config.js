@@ -1,4 +1,4 @@
 
-exports.baseApiUrl = "http://localhost:3000";
+exports.baseApiUrl = "http://localhost:8080";
 
 module.exports = exports;

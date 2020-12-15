@@ -9,11 +9,16 @@ import { baseApiUrl } from './config';
 
 const App = () =>  {
   const [accountData, setAccountData] = React.useState({});
+  const [purchaseData, setPurchaseData] = React.useState([]);
   const [refetch, setRefetch] = React.useState(true);
   React.useEffect(() => {
     if(refetch){
       axios.get(`${baseApiUrl}/accounts`).then((response) => {
         setAccountData(response.data);
+        setRefetch(false);
+      }).catch(err => alert('error in api call'))
+      axios.get(`${baseApiUrl}/purchases`).then((response) => {
+        setPurchaseData(response.data.data);
         setRefetch(false);
       }).catch(err => alert('error in api call'))
     }
@@ -29,13 +34,17 @@ const App = () =>  {
         < Header />
         <div className="accountsContainer" > 
           < Accounts 
-            cashOnHandBalance={accountData.cashOnHandBalance} 
-            checkingBalance ={accountData.checkingBalance}
-            savingBalance ={accountData.savingBalance}
+            cashOnHandBalance={accountData && accountData.cashOnHandBalance || 0} 
+            checkingBalance ={accountData && accountData.checkingBalance || 0}
+            savingBalance ={accountData && accountData.savingBalance || 0}
+            
           />
-          < EarningsAndExpenses /> 
+          < EarningsAndExpenses 
+            expenses={accountData && accountData.expenses || []}
+            income={accountData && accountData.income|| []}
+          /> 
           < AddtoEarningPurchaseList  handleSubmitClick={submitTxData}/>
-          < PurchasesAndEarningsList /> 
+          < PurchasesAndEarningsList purchases={purchaseData} /> 
         </div>
       </div>
     );

@@ -42,7 +42,7 @@ export default class AddtoEarningPurchaseList extends Component {
                     <div className="form-control">
                         <label htmlFor="amount"
                             >Amount <br />
-                            (negative - expense, positive - income)</label
+                            </label
                     >
                         <input name="amount" type="number" 
                         value={this.state.amount}  placeholder="Enter amount here" 

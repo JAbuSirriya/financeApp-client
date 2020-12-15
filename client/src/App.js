@@ -1,5 +1,14 @@
 import * as React from 'react';
 import axios from 'axios';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import "./App.css";
+import { Navbar, Nav } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Accounts from './components/Accounts'
 import AddtoEarningPurchaseList from './components/AddtoEarningPurchaseList'
 import EarningsAndExpenses from './components/EarningsAndExpenses'
@@ -30,9 +39,27 @@ const App = () =>  {
     })
   }, [])
     return (
-      <div>
-        < Header />
-        <div className="accountsContainer" > 
+      <Router>
+      
+      <Navbar bg="light" expand="lg">
+  <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="mr-auto">
+      <Nav.Link href="/transactions/add">Add Transaction</Nav.Link>
+      <Nav.Link href="/transactions">List Tractions</Nav.Link>
+      
+    </Nav>
+</Navbar.Collapse>
+</Navbar>
+        
+
+        
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route exact path="/">
           < Accounts 
             cashOnHandBalance={accountData && accountData.cashOnHandBalance || 0} 
             checkingBalance ={accountData && accountData.checkingBalance || 0}
@@ -43,10 +70,16 @@ const App = () =>  {
             expenses={accountData && accountData.expenses || []}
             income={accountData && accountData.income|| []}
           /> 
-          < AddtoEarningPurchaseList  handleSubmitClick={submitTxData}/>
+          </Route>
+          <Route exact path="/transactions/add">
+            < AddtoEarningPurchaseList  handleSubmitClick={submitTxData}/>
+          </Route>
+          <Route exact path="/transactions">
           < PurchasesAndEarningsList purchases={purchaseData} /> 
-        </div>
-      </div>
+          </Route>
+        </Switch>
+      
+    </Router>
     );
 }
 

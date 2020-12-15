@@ -11,6 +11,7 @@ export default class PurchasesAndEarningsList extends Component {
                 <thead>
                     <th>Description</th>
                     <th>Amount</th>
+                    <th>Account Type</th>
                 </thead>
                 <tbody>
                     {this.props.purchases.map(v => (
@@ -20,6 +21,9 @@ export default class PurchasesAndEarningsList extends Component {
                             </th>
                             <th>
                                         {v.amount}
+                            </th>
+                            <th>
+                                        {v.accountType}
                             </th>
                         </tr>
                     ))}

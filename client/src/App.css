@@ -15,10 +15,11 @@
 
 .add-transaction-form{
   padding: 2rem;
-  margin-top: 30vh;
+  margin-top: 15vh;
   margin-left: 30vw;
   margin-right: 30vw;
   border: 1px solid grey;
   background-color: lightgrey;
   border-radius: 2rem;
 }
+

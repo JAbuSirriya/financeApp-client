@@ -4,17 +4,20 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import "./App.css";
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav, Jumbotron,  } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Accounts from './components/Accounts'
 import AddtoEarningPurchaseList from './components/AddtoEarningPurchaseList'
 import EarningsAndExpenses from './components/EarningsAndExpenses'
 import { Header } from './components/Header'
-import PurchasesAndEarningsList from './components/PurchasesAndEarningsList'
+import PurchasesAndEarningsList from './components/PurchasesAndEarningsList';
+import Login from './components/Login';
+import Register from './components/Register';
 import { baseApiUrl } from './config';
+import { isLoggedIn } from './util';
+import { Logout } from './components/Logout';
 
 const App = () =>  {
   const [accountData, setAccountData] = React.useState({});
@@ -41,8 +44,9 @@ const App = () =>  {
     return (
       <Router>
       
-      <Navbar bg="light" expand="lg">
-  <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+      {isLoggedIn() && <Navbar bg="light" expand="lg">
+        
+          <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
@@ -51,14 +55,19 @@ const App = () =>  {
       
     </Nav>
 </Navbar.Collapse>
-</Navbar>
+          
+          <Nav.Link href="/logout">Logout</Nav.Link>
+          
+  
+
+</Navbar>}
         
 
-        
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+        <Jumbotron>
         <Switch>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/logout" component={Logout} />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/">
           < Accounts 
             cashOnHandBalance={accountData && accountData.cashOnHandBalance || 0} 
@@ -78,6 +87,10 @@ const App = () =>  {
           < PurchasesAndEarningsList purchases={purchaseData} /> 
           </Route>
         </Switch>
+        </Jumbotron>
+
+
+        
       
     </Router>
     );

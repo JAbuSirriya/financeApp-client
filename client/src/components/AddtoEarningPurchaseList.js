@@ -29,6 +29,7 @@ export default class AddtoEarningPurchaseList extends Component {
         e.preventDefault();
         const data = {description: this.state.description, amount: this.state.amount, accountType: this.state.accountType}
         this.props.handleSubmitClick(data);
+        window.location.href = "/transactions";
     }
 
 
@@ -52,7 +53,7 @@ export default class AddtoEarningPurchaseList extends Component {
     <Form.Label>Amount</Form.Label>
     <Form.Control name="amount" onChange={this.handleInputChange} type="number" placeholder="Enter Amount" />
     <Form.Label>Account Type</Form.Label>
-    <Form.Control as="select" name="accountType" value={this.state.accountType}>
+    <Form.Control onChange={this.handleInputChange} as="select" name="accountType" value={this.state.accountType}>
     {acountTypes.map(v => (
                                 <option value={v.value}>{v.label}</option>
                             ))}

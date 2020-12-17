@@ -1,4 +1,4 @@
 
-exports.baseApiUrl = "http://localhost:8080";
+exports.baseApiUrl = "https://immense-dusk-98922.herokuapp.com";
 
 module.exports = exports;

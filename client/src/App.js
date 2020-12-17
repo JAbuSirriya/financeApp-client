@@ -10,13 +10,12 @@ import { Navbar, Nav, Jumbotron,  } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Accounts from './components/Accounts'
 import AddtoEarningPurchaseList from './components/AddtoEarningPurchaseList'
-import EarningsAndExpenses from './components/EarningsAndExpenses'
-import { Header } from './components/Header'
+import EarningsAndExpenses from './components/EarningsAndExpenses';
 import PurchasesAndEarningsList from './components/PurchasesAndEarningsList';
 import Login from './components/Login';
 import Register from './components/Register';
 import { baseApiUrl } from './config';
-import { isLoggedIn } from './util';
+import { authToken, isLoggedIn } from './util';
 import { Logout } from './components/Logout';
 
 const App = () =>  {
@@ -24,19 +23,34 @@ const App = () =>  {
   const [purchaseData, setPurchaseData] = React.useState([]);
   const [refetch, setRefetch] = React.useState(true);
   React.useEffect(() => {
-    if(refetch){
-      axios.get(`${baseApiUrl}/accounts`).then((response) => {
+    if(refetch && isLoggedIn()){
+      axios.get(`${baseApiUrl}/accounts`, {
+        headers: {
+          Authorization: authToken(),
+          "Content-Type": "application/json"
+        }
+      }).then((response) => {
         setAccountData(response.data);
         setRefetch(false);
       }).catch(err => alert('error in api call'))
-      axios.get(`${baseApiUrl}/purchases`).then((response) => {
+      axios.get(`${baseApiUrl}/purchases`, {
+        headers: {
+          Authorization: authToken(),
+          "Content-Type": "application/json"
+        }
+      }).then((response) => {
         setPurchaseData(response.data.data);
         setRefetch(false);
       }).catch(err => alert('error in api call'))
     }
   }, [refetch]);
   const submitTxData = React.useCallback((data) => {
-    axios.post(`${baseApiUrl}/purchases/`, data)
+    axios.post(`${baseApiUrl}/purchases/`, data, {
+      headers: {
+        Authorization: authToken(),
+        "Content-Type": "application/json"
+      }
+    })
     .then(res => {
       setRefetch(true);
     })

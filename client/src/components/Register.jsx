@@ -57,7 +57,7 @@ export default class Login extends Component {
   </Button>
       </Col>
       <Col xs="4">
-      <Link to="/login">Existing User?</Link>
+      <Link to="/">Existing User?</Link>
       </Col>
   
   

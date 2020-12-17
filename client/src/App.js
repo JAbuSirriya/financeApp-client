@@ -60,7 +60,7 @@ const App = () =>  {
       
       {isLoggedIn() && <Navbar bg="light" expand="lg">
         
-          <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand href="/home">React-Bootstrap</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
@@ -79,10 +79,10 @@ const App = () =>  {
 
         <Jumbotron>
         <Switch>
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/" component={Login} />
           <Route exact path="/logout" component={Logout} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/">
+          <Route exact path="/home">
           < Accounts 
             cashOnHandBalance={accountData && accountData.cashOnHandBalance || 0} 
             checkingBalance ={accountData && accountData.checkingBalance || 0}

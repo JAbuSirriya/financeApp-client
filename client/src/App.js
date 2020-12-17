@@ -71,8 +71,6 @@ const App = () =>  {
 </Navbar.Collapse>
           
           <Nav.Link href="/logout">Logout</Nav.Link>
-          
-  
 
 </Navbar>}
         

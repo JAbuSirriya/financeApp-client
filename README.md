@@ -1,1 +1,3 @@
-# financeApp-client
+# Budgeting Easy
+
+

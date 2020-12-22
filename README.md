@@ -1,8 +1,9 @@
 # Budgeting Easy
 
 
-Front-End repo: https://github.com/JAbuSirriya/financeApp-client
-Back-End repo: https://github.com/JAbuSirriya/financeApp-Api
+###### Front-End repo: https://github.com/JAbuSirriya/financeApp-client
 
-Deployed Project: https://easy-budgeting.herokuapp.com/
+###### Back-End repo: https://github.com/JAbuSirriya/financeApp-Api
+
+###### Deployed Project: https://easy-budgeting.herokuapp.com/
 
